@@ -71,7 +71,7 @@ const getPostFalseSearch = (req,res) => {
     })
 }
 const getPostTrueNoSearch = (req, res) => {
-    const {id} = req.session.user
+    const {id} = req.params
     console.log('hit3')
     console.log(req.session)
     const db = req.app.get('db')

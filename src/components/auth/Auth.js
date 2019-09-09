@@ -47,25 +47,34 @@ class Auth extends Component {
     render() {
      
         return (
-            <div>
-             
+            <div className='auth-container'>
+                <div className='auth-top'>
+                <img className='auth-img'></img>
+                <h1 className='helo'>Helo</h1>
+                </div>
+                <div className='username'>
+                <label>Username:</label>
                 <input type='text' 
                  placeholder='Username'
                  name='username'
                  value={this.state.username}
                  onChange={this.handleChange}>                    
                 </input>
-
+                </div>
+                <div className='password'>
+                <label>Password:</label>
                 <input type='text' 
                  placeholder='Password'
                  name='password'
                  value={this.state.password}
                  onChange={this.handleChange}>                     
                  </input>
+                 </div>
+                 <div className='auth-btns'>
+                <button className='authBtn' onClick={this.login}>login</button>
 
-                <button onClick={this.login}>login</button>
-
-                <button onClick={this.register}>register</button>
+                <button className='authBtn' onClick={this.register}>register</button>
+                </div>
             </div>
         )
     }

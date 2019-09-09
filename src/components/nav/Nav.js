@@ -8,7 +8,7 @@ class Nav extends Component {
        if(this.props.location.pathname !== '/'){
            
         return (
-            <div>
+            <div className='nav'>
                 <img src = {this.props.profile_pic} alt={this.props.id.username}></img>
                 <p>{this.props.id.username}</p>
                 

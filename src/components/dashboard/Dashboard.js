@@ -120,12 +120,17 @@ class Dashboard extends Component {
 
         return (
             <div>
+            <div className='dash'>
+                <div>
                 <input onChange={this.handleChange}></input>
                 <button onClick={this.checkSearch}>search</button>
                 <button>Reset</button>
+                </div>
                 <label>My Posts</label>
                 <input type="checkbox" onClick={this.myPost}></input>
-                {mappedPosts}
+                
+            </div>
+            {mappedPosts}
             </div>
         )
     }
