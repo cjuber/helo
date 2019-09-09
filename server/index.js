@@ -3,15 +3,24 @@ const express = require('express')
 const cors = require('cors')
 const massive = require('massive')
 const chalk = require('chalk')
+const session = require('express-session')
 
 const ctrl = require('./controller')
 
-const {SERVER_PORT, CONNECTION_STRING} = process.env
+const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env
 
 const app = express()
 
 app.use(express.json())
 app.use(cors())
+app.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: SESSION_SECRET,
+    cookie: {
+        maxAge: 6000000
+    }
+}))
 
 massive(CONNECTION_STRING)
 .then(dbInstance =>{
@@ -28,7 +37,11 @@ app.post('/auth/login', ctrl.login)
 app.delete('/auth/logout', ctrl.logout)
 
 app.get('/api/posts', ctrl.getPosts)
+app.get('/api/posts/:id/:search', ctrl.getPostTrueSearch)
+app.get('/api/posts/id/:search',ctrl.getPostFalseSearch)
+app.get('/api/posts/:id', ctrl.getPostTrueNoSearch)
 
+app.post('/api/post/:id', ctrl.makePost)
 
 
 app.listen(SERVER_PORT, () =>{
